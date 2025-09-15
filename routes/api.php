@@ -10,7 +10,7 @@ Route::get("/login", [AuthController::class, "tokenLogin"])->name("login");
 Route::post("/login", [AuthController::class, "login"]);
 Route::post("/register", [AuthController::class, "register"]);
 
-Route::apiResource("/users", UserController::class)->except(["create", "store", "show", "edit", "update", "destroy"]);
+Route::apiResource("/users", UserController::class)->except(["create", "store", "show", "edit"]);
 Route::middleware("auth:sanctum")->group(function () {
     Route::apiResource("/contacts", ContactController::class)->except(["create", "edit"]);
     Route::apiResource("/discussions", DiscussionController::class)->except(["create", "edit"]);

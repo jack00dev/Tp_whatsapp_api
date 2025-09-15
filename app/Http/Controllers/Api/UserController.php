@@ -53,7 +53,15 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        User::where('id', $id)->update([
+            "name" => $request->name,
+            "email" => $request->email,
+            "phone_number" => $request->phone_number,
+        ]);
+
+        return response()->json([
+                'message' => "Utilisateur modifié avec succès",
+            ], 200);
     }
 
     /**
@@ -61,6 +69,9 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::find($id)->delete();
+        return response()->json([
+            "message" => "Suppression réussie"
+        ], 200);
     }
 }
